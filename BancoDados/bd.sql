@@ -20,9 +20,9 @@ USE db_curso_web;               -- Para setar o banco que queremos usar
 -- Datetime (combinação de date e time em um mesmo campo)
 
 CREATE TABLE tb_cursos (
-    id_curso INT AUTO_INCREMENT NOT NULL,
+    id_curso INT NOT NULL,
     imagem_curso VARCHAR(100) NOT NULL,
-    nome_curos CHAR(50) NOT NULL,
+    nome_curso CHAR(50) NOT NULL,
     resumo TEXT NULL,
     data_cadastro DATETIME NOT NULL,
     ativo BOOLEAN DEFAULT TRUE,
@@ -42,3 +42,22 @@ DROP TABLE tb_cursos;
 -- PRIMARY KEY é a chave primária da tabela
 
 ------------------------------------------------------------------------------
+
+---------------------------- Alteração de tabelas ----------------------------
+
+RENAME TABLE tb_cursos TO tb_registro_cursos;
+
+ALTER TABLE tb_registro_cursos ADD COLUMN carga_horaria VARCHAR(5) NOT NULL;
+
+ALTER TABLE tb_registro_cursos CHANGE carga_horaria carga_horaria INT NOT NULL;
+
+ALTER TABLE tb_registro_cursos CHANGE nome_curos nome_cursos CHAR(50) NOT NULL;
+
+ALTER TABLE tb_registro_cursos DROP carga_horaria;
+
+DESCRIBE tb_registro_cursos;
+
+INSERT INTO tb_cursos (id_curso, imagem_curso, nome_curso, resumo, data_cadastro, ativo, investimento) VALUES 
+    (1, 'curso_node.png', 'Curso Completo NODEJS e MongoDB', 'Crie aplicações back-end incríveis com a plataforma NODEJS e o banco de dados MongoDB', UTC_TIME, 1, 550.75);
+
+select * from tb_cursos;
