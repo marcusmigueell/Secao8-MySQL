@@ -229,3 +229,90 @@ INSERT INTO tb_alunos (id_aluno,nome,idade,interesse,email,estado) VALUES
     (98,"Hector",83,"Música","Class.aptent@et.co.uk","AM"),
     (99,"Tara",95,"Jogos","Donec.porttitor.tellus@nonfeugiat.co.uk","DF"),
     (100,"Charissa",50,"Informática","orci@elementumduiquis.ca","AP");
+
+----------------------------------- Realizando consultas na nova tabela usando operadores -----------------------------------
+
+USE db_curso_web;
+
+SELECT * FROM tb_alunos WHERE interesse = 'Jogos';
+
+SELECT * FROM tb_alunos WHERE idade >= 35;
+
+SELECT * FROM tb_alunos WHERE idade >= 45 AND interesse = 'Jogos';
+
+SELECT * FROM tb_alunos WHERE idade >= 45 AND interesse = 'Jogos' AND estado = 'RN';
+
+SELECT * FROM tb_alunos WHERE idade > 45 OR interesse = 'Jogos';
+
+----------------------------------- Realizando consultas avançadas na nova tabela usando operadores -----------------------------------
+
+USE db_curso_web;
+
+------------------------------------------ BETWEEN ------------------------------------------
+
+-- BETWEEN -> entre  --> pode ser usado também em intervalos de datas
+
+SELECT * FROM tb_alunos WHERE idade >= 18 AND idade <= 21;
+
+SELECT * FROM tb_alunos WHERE idade BETWEEN 18 AND 21;
+
+SELECT * FROM tb_alunos WHERE id_aluno BETWEEN 35 AND 40;
+
+---------------------------------------- IN e NOT IN -----------------------------------------
+
+-- IN --> facilita as consultas com uma lista de possibilidades
+-- NOT IN --> Retorna o contrário da consulta IN
+
+SELECT * FROM tb_alunos WHERE interesse = 'Jogos' OR interesse = 'Música' OR interesse = 'Esporte';
+
+SELECT * FROM tb_alunos WHERE interesse IN ('Jogos','Música','Esporte');
+
+SELECT * FROM tb_alunos WHERE interesse NOT IN ('Jogos','Música','Esporte');
+
+-------------------------------------------- LIKE --------------------------------------------
+
+-- LIKE --> Permite realizar filtros com base em uma pesquisa de caracteres dentro de uma coluna textual
+
+-- % Indica que pode haver a existência de qualquer conjunto de caracter no texto
+
+SELECT * FROM tb_alunos WHERE nome LIKE 'E%'; -- nomes que se iniciam com a letra E
+
+SELECT * FROM tb_alunos WHERE nome LIKE '%ne'; -- nomes que se finalizam com a letra NE
+
+SELECT * FROM tb_alunos WHERE nome LIKE '%a%'; -- nomes que tem o caractere A no meio do nome
+
+-- _ Indica que pode haver a existência de um ou mais caracteres em uma posição específica do texto
+
+SELECT * FROM tb_alunos WHERE nome LIKE '_riel'; -- uma palavra em que seja qualquer letra na primeira posição e termine com RIEL
+
+SELECT * FROM tb_alunos WHERE nome LIKE '_ru_'; -- uma palavra em que seja qualquer letra na primeira e na ultima posição e entre elas RU
+
+SELECT * FROM tb_alunos WHERE nome LIKE 'I__'; -- retorna com nome iniciado com a letra I e tem apenas 3 letras esse mesmo nome
+
+SELECT * FROM tb_alunos WHERE nome LIKE '%tt_'; -- combinando os coringas
+
+----------------------------------------- ORDER BY ------------------------------------------
+
+-- ORDER BY ---> usado para ordenar os resultados
+
+-- ASC --> ascendente, ou seja, do menor para o maior
+SELECT nome, idade FROM tb_alunos WHERE idade BETWEEN 18 AND 25 ORDER BY nome ASC;
+
+-- DESC --> descrescente, ou seja, do maior para o menor
+SELECT nome, idade FROM tb_alunos WHERE idade BETWEEN 18 AND 25 ORDER BY nome DESC;
+
+SELECT nome, idade FROM tb_alunos WHERE idade BETWEEN 18 AND 25 ORDER BY nome ASC, idade DESC;
+-- a idade descrescente respeitará o nome
+
+--------------------------------------- LIMIT e OFFSET ---------------------------------------
+
+-- LIMIT e OFFSET Limitando o retorno das consultas
+
+SELECT * FROM tb_alunos LIMIT 25; -- retornar apenas os 25 primeiros registros
+SELECT * FROM tb_alunos ORDER BY id_aluno DESC LIMIT 25; -- retornar apenas os 25 ultimos registros
+SELECT * FROM tb_alunos LIMIT 4 OFFSET 0; -- a partir do registro 0 do BD traga 4 registros
+SELECT * FROM tb_alunos LIMIT 4 OFFSET 4; -- a partir do registro 4 do BD traga 4 registros
+SELECT * FROM tb_alunos LIMIT 4 OFFSET 8; -- a partir do registro 8 do BD traga 4 registros
+SELECT * FROM tb_alunos LIMIT 8,4; -- a partir do registro 8 do BD traga 4 registros
+
+------------------------------------ Funçoes de Agregação -------------------------------------
