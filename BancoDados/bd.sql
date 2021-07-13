@@ -340,4 +340,18 @@ SELECT MAX(investimento) FROM tb_cursos WHERE ativo = true;
 
 -- AVG(<coluna>) - Retorna a média de todos os registros com base em uma coluna
 
-SELECT AVG(investimento) FROM tb_cursos where ativo = true; 
+SELECT AVG(investimento) FROM tb_cursos where ativo = true;
+
+-- SUM(<coluna>) - Retorna a soma dos valores de todos os registros com base em uma coluna
+
+SELECT SUM(investimento) FROM tb_cursos where ativo = true;
+
+-- COUNT(*) - Retorna a quantidade de todos os registros de uma tabela
+
+SELECT COUNT(*) FROM tb_cursos where ativo = true;  -- contar todos que estão ativos
+
+------------------------------------- GROUP BY -------------------------------------
+
+-- GROUP BY -> agrupa os registros com base em uma ou mais colunas cujos valores sejam iguais. Permite realizar funções de agregação em cada subconjunto agrupado de registros
+
+SELECT * FROM tb_alunos GROUP BY interesse;
