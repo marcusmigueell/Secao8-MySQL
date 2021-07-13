@@ -48,7 +48,7 @@ RENAME TABLE tb_cursos TO tb_registro_cursos;
 
 --RENAME usado para alterar o nome da tabela
 
-ALTER TABLE tb_registro_cursos ADD COLUMN carga_horaria VARCHAR(5) NOT NULL;
+ALTER TABLE tb_cursos ADD COLUMN carga_horaria INT(5) NULL;
 
 -- ALTER TABLE nome_tabela ADD novo_nome_coluna e seu tipo
 
@@ -316,3 +316,28 @@ SELECT * FROM tb_alunos LIMIT 4 OFFSET 8; -- a partir do registro 8 do BD traga 
 SELECT * FROM tb_alunos LIMIT 8,4; -- a partir do registro 8 do BD traga 4 registros
 
 ------------------------------------ Funçoes de Agregação -------------------------------------
+
+SELECT * FROM tb_cursos;
+
+TRUNCATE tb_cursos;
+
+USE db_curso_web;
+
+INSERT INTO tb_cursos (id_curso, imagem_curso, nome_curso, resumo, data_cadastro, ativo, investimento, carga_horaria) VALUES 
+    (1, 'curso_node.jpg', 'Curso Completo do Desenvolvedor NodeJS e MongoDB', 'Resumo do curso de NodeJS', '2018-01-01', 1, 159.99, 15), 
+    (2, 'curso_react_native.jpg', 'Multiplataforma Android/IOS com React e Redux', 'Resumo do curso de React Native', '2018-02-01', 1, 204.99, 37), 
+    (3, 'angular.jpg', 'Desenvolvimento WEB com ES6, TypeScript e Angular', 'Resumo do curso de ES6, TypeScript e Angular', '2018-03-01', 1, 579.99, 31), 
+    (4, 'web_completo_2.jpg', 'Web Completo 2.0', 'Resumo do curso de Web Completo 2.0', '2018-04-01', 1, 579.99, 59), 
+    (5, 'linux.jpg', 'Introdução ao GNU/Linux', 'Resumo do curso de GNU/Linux', '2018-05-01', 0, 0, 1);
+
+-- MIN(<coluna>) - Retorna o menor valor de todos os registros com base em uma coluna
+
+SELECT MIN(investimento) FROM tb_cursos WHERE ativo = true; 
+
+-- MAX(<coluna>) - Retorna o maior valor de todos os registros com base em uma coluna
+
+SELECT MAX(investimento) FROM tb_cursos WHERE ativo = true;
+
+-- AVG(<coluna>) - Retorna a média de todos os registros com base em uma coluna
+
+SELECT AVG(investimento) FROM tb_cursos where ativo = true; 
