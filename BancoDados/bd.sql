@@ -1,7 +1,7 @@
 CREATE DATABASE db_curso_web;   -- Criar banco de dados
 DROP DATABASE db_curso_web;     -- Deletar o banco de dados
 
-USE db_curso_web;               -- Para setar o banco que queremos usar
+USE db_curso_web;               -- Para setar o banco que queremos usar, toda vez que iniciarmos uma conexão observar se a tabela esta selecionada, caso não esteja, usar esse comando
 
 ----------------------------- Criação de tabelas -----------------------------
 
@@ -47,17 +47,34 @@ DROP TABLE tb_cursos;
 
 RENAME TABLE tb_cursos TO tb_registro_cursos;
 
+--RENAME usado para alterar o nome da tabela
+
 ALTER TABLE tb_registro_cursos ADD COLUMN carga_horaria VARCHAR(5) NOT NULL;
+
+-- ALTER TABLE nome_tabela ADD novo_nome_coluna e seu tipo
 
 ALTER TABLE tb_registro_cursos CHANGE carga_horaria carga_horaria INT NOT NULL;
 
 ALTER TABLE tb_registro_cursos CHANGE nome_curos nome_cursos CHAR(50) NOT NULL;
 
+-- ALTER TABLE nome_tabela CHANGE nome_coluna nome_coluna atributos ----- é usado para alterar o tipo da coluna
+
 ALTER TABLE tb_registro_cursos DROP carga_horaria;
 
-DESCRIBE tb_registro_cursos;
+-- ALTER TABLE nome_tabela DROP nome_coluna_que_será_excluída
+
+DESCRIBE tb_cursos;
+
+--DESCRIBE nome_tabela  -*- Mostra os campos da tabela detalhadamente
 
 INSERT INTO tb_cursos (id_curso, imagem_curso, nome_curso, resumo, data_cadastro, ativo, investimento) VALUES 
     (1, 'curso_node.png', 'Curso Completo NODEJS e MongoDB', 'Crie aplicações back-end incríveis com a plataforma NODEJS e o banco de dados MongoDB', UTC_TIME, 1, 550.75);
 
+INSERT INTO tb_cursos (id_curso, imagem_curso, nome_curso, resumo, data_cadastro, ativo, investimento) VALUES 
+    (2, 'curso_web.png', 'Curso Completo FRONT e BACK', 'Crie aplicações front-end e back-end incríveis do zero ao avançado', UTC_TIME, 1, 275.75);
+
+--INSERT INTO nome_tabela (campos da tabela separados por vírgula) VALUES (valores à serem adicionados, separados por vígulas e VARCHAR E CHAR entre 'aspas simples'); -*- usado para inserir valores na tabela
+
 select * from tb_cursos;
+
+--SELECT * FROM nome_tabela -*- mostra os valores inseridos na tabela
