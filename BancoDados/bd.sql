@@ -372,3 +372,14 @@ SELECT estado, COUNT(*) AS total_por_estado FROM tb_alunos WHERE interesse != 'E
 
 ----------------------------- Atualizando Registros ----------------------------------
 
+-- UPDATE -> utilizado para atualizar registros em uma TABLE_NAME
+
+USE db_curso_web;
+
+SELECT * FROM tb_cursos;
+
+UPDATE tb_cursos SET data_cadastro = '2021-07-13 19:25:00';
+
+UPDATE tb_cursos SET ativo = false, investimento = 549.79 WHERE id_curso = 3;
+
+------------------------------ Deletando Registros -----------------------------------
