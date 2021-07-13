@@ -116,8 +116,11 @@ CREATE TABLE tb_alunos (
   idade int default NULL,
   interesse varchar(255) default NULL,
   email varchar(255) default NULL,
-  estado varchar(255) default NULL
+  estado varchar(255) default NULL,
+  PRIMARY KEY (id_aluno)
 );
+
+DROP TABLE tb_alunos;
 
 INSERT INTO tb_alunos (id_aluno,nome,idade,interesse,email,estado) VALUES 
     (1,"Jorden",47,"Esporte","vel.mauris.Integer@nec.net","DF"),
