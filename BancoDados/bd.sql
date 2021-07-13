@@ -354,4 +354,21 @@ SELECT COUNT(*) FROM tb_cursos where ativo = true;  -- contar todos que estão a
 
 -- GROUP BY -> agrupa os registros com base em uma ou mais colunas cujos valores sejam iguais. Permite realizar funções de agregação em cada subconjunto agrupado de registros
 
-SELECT * FROM tb_alunos GROUP BY interesse;
+SELECT interesse, COUNT(*) AS total_por_interesse FROM tb_alunos GROUP BY interesse;
+
+SELECT estado, COUNT(*) AS total_por_estado FROM tb_alunos GROUP BY estado;
+
+------------------------- Filtrando seleções agrupadas ------------------------------
+
+-- HAVING -> filtro realizado sobre o resultado dos agrupamentos (GROUP BY)
+
+SELECT estado, COUNT(*) AS total_por_estado FROM tb_alunos GROUP BY estado HAVING total_por_estado >= 5;
+
+SELECT estado, COUNT(*) AS total_por_estado FROM tb_alunos GROUP BY estado HAVING estado IN('MG', 'SP');
+
+SELECT estado, COUNT(*) AS total_por_estado FROM tb_alunos GROUP BY estado HAVING estado IN('CE', 'SC') AND total_por_estado > 4;
+
+SELECT estado, COUNT(*) AS total_por_estado FROM tb_alunos WHERE interesse != 'Esporte' GROUP BY estado HAVING total_por_estado > 3;
+
+----------------------------- Atualizando Registros ----------------------------------
+
