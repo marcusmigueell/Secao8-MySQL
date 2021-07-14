@@ -398,7 +398,7 @@ DELETE FROM tb_alunos WHERE idade IN(10,18,22,28,34) AND interesse = 'Esporte';
 
 -- A chave primária é única em uma tabela, a chave primária é muito importante dentro de uma tabela
 -- A chave estrangeira é a chave que fará a ligação de uma tabela com outra.
--- As informações sobre chaves primarias e estrangeiras no outro arquivo chamado loja_virtual.sql que estará no mesmo diretório que esse
+-- As informações sobre chaves primarias e estrangeiras no outro arquivo chamado bd_loja_virtual.sql que estará no mesmo diretório que esse
 
 
 
