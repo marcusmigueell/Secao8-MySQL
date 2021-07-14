@@ -372,7 +372,7 @@ SELECT estado, COUNT(*) AS total_por_estado FROM tb_alunos WHERE interesse != 'E
 
 ----------------------------- Atualizando Registros ----------------------------------
 
--- UPDATE -> utilizado para atualizar registros em uma TABLE_NAME
+-- UPDATE -> utilizado para atualizar registros em uma tabela
 
 USE db_curso_web;
 
@@ -383,3 +383,32 @@ UPDATE tb_cursos SET data_cadastro = '2021-07-13 19:25:00';
 UPDATE tb_cursos SET ativo = false, investimento = 549.79 WHERE id_curso = 3;
 
 ------------------------------ Deletando Registros -----------------------------------
+
+-- DELETE -> utilizado para deletar registros em uma tabela
+
+USE db_curso_web;
+
+SELECT * FROM tb_alunos;
+
+DELETE FROM tb_alunos WHERE id_aluno = 5;
+
+DELETE FROM tb_alunos WHERE idade IN(10,18,22,28,34) AND interesse = 'Esporte';
+
+------------------------------- Chaves Primárias -------------------------------------
+
+-- A chave primária é única em uma tabela, a chave primária é muito importante dentro de uma tabela
+-- A chave estrangeira é a chave que fará a ligação de uma tabela com outra.
+-- As informações sobre chaves primarias e estrangeiras no outro arquivo chamado loja_virtual.sql que estará no mesmo diretório que esse
+
+
+
+
+
+
+
+
+
+
+
+
+
