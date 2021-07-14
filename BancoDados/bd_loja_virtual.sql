@@ -97,3 +97,44 @@ SELECT * FROM tb_pedidos;
 
 INSERT INTO tb_pedidos_produto(id_pedido, id_produto) VALUES(3,1);
 SELECT * FROM tb_pedidos_produto;
+
+
+----------------------------------------------- USANDO OS JOIN'S ------------------------------------------------------
+
+USE bd_loja_virtual;
+
+-- LEFT JOIN --
+
+SELECT * FROM tb_clientes LEFT JOIN tb_pedidos ON (tb_clientes.id_cliente = tb_pedidos.id_cliente);
+
+SELECT * FROM tb_produtos LEFT JOIN tb_imagens ON (tb_produtos.id_produto = tb_imagens.id_produto);
+
+-- RIGHT JOIN --
+
+SELECT * FROM tb_clientes RIGHT JOIN tb_pedidos ON (tb_clientes.id_cliente = tb_pedidos.id_cliente);
+
+SELECT * FROM tb_produtos RIGHT JOIN tb_imagens ON (tb_produtos.id_produto = tb_imagens.id_produto);
+
+-- INNER JOIN --
+
+INSERT INTO tb_produtos(produto,valor) VALUES ('HD Externo Portátil Seagate Expansion 1TB USB 3.0', 274.90);
+
+SELECT * FROM tb_pedidos LEFT JOIN tb_pedidos_produto ON (tb_pedidos.id_pedido = tb_pedidos_produto.id_pedido)
+                LEFT JOIN tb_produtos ON (tb_pedidos_produto.id_produto = tb_produtos.id_produto);
+
+SELECT * FROM tb_pedidos RIGHT JOIN tb_pedidos_produto ON (tb_pedidos.id_pedido = tb_pedidos_produto.id_pedido)
+                RIGHT JOIN tb_produtos ON (tb_pedidos_produto.id_produto = tb_produtos.id_produto);
+
+SELECT * FROM tb_pedidos INNER JOIN tb_pedidos_produto ON (tb_pedidos.id_pedido = tb_pedidos_produto.id_pedido)
+                INNER JOIN tb_produtos ON (tb_pedidos_produto.id_produto = tb_produtos.id_produto);
+
+
+----------------------------------------------- Apelidando Tabelas ------------------------------------------------------
+
+SELECT * FROM tb_produtos AS p LEFT JOIN tb_descricoes_tecnicas AS dt ON (p.id_produto = dt.id_produto);
+
+SELECT p.id_produto AS ID, p.produto AS Produto, p.valor AS Preço, dt.descricao_tecnica AS Descrição FROM tb_produtos AS p LEFT JOIN tb_descricoes_tecnicas AS dt ON (p.id_produto = dt.id_produto);
+
+SELECT p.id_produto AS ID, p.produto AS Produto, p.valor AS Preço, dt.descricao_tecnica AS Descrição FROM tb_produtos AS p LEFT JOIN tb_descricoes_tecnicas AS dt ON (p.id_produto = dt.id_produto) WHERE p.valor > 500;
+
+SELECT p.id_produto AS ID, p.produto AS Produto, p.valor AS Preço, dt.descricao_tecnica AS Descrição FROM tb_produtos AS p LEFT JOIN tb_descricoes_tecnicas AS dt ON (p.id_produto = dt.id_produto) WHERE p.valor > 500 ORDER BY p.valor ASC;
